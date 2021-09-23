@@ -341,14 +341,20 @@ TextSpan buildTextSpan(
               inlineSpan: TextSpan(
                 text: element.text,
                 style: linkStyle,
-                recognizer: onOpen != null ? (TapGestureRecognizer()..onTap = () => onOpen(element)) : null,
+                //recognizer: onOpen != null ? (TapGestureRecognizer()..onTap = () => onOpen(element)) : null,
+                onEnter: (PointerEnterEvent pointerEnterEvent){
+                  print('PointerEnterEvent ${element.text}');
+                }
               ),
             );
           } else {
             return TextSpan(
               text: element.text,
               style: linkStyle,
-              recognizer: onOpen != null ? (TapGestureRecognizer()..onTap = () => onOpen(element)) : null,
+              //recognizer: onOpen != null ? (TapGestureRecognizer()..onTap = () => onOpen(element)) : null,
+              onEnter: (PointerEnterEvent pointerEnterEvent){
+                print('PointerEnterEvent ${element.text}');
+              }
             );
           }
         } else {
