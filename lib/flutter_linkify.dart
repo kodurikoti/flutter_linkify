@@ -336,10 +336,14 @@ TextSpan buildTextSpan(
       (element) {
         if (element is LinkableElement) {
           if (useMouseRegion) {
+            var linkText = element.text.replaceAll('https://', '').replaceAll('http://', '');
+            if(linkText.length > 50){
+              linkText = '${linkText.substring(0, 50)}........';
+            }
             return LinkableSpan(
               mouseCursor: SystemMouseCursors.click,
               inlineSpan: TextSpan(
-                text: element.text,
+                text: linkText,
                 style: linkStyle,
                 recognizer: onOpen != null ? (TapGestureRecognizer()..onTap = () => onOpen(element)) : null,
               ),
